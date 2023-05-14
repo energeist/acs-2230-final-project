@@ -3,14 +3,25 @@ const axios = require('axios');
 const router = express.Router();
 const Cat = require('../models/cat');
 
-// Helper function to ping catfact API
-const getCatFact = async (res, req) => {
+// Helper function to ping catfact API for a fact
+const getCatFact = async (req, res) => {
   try {
     const response = await axios.get('https://catfact.ninja/fact');
     const fact = response.data.fact;
     return fact;
   } catch (error) {
     console.error(error);
+  };
+};
+
+// Helper function to ping catapi API for images
+const getCatImage = async (req, res) => {
+  try {
+    const response = await axios.get('https://api.thecatapi.com/v1/images/search');
+    const image = response.data[0].url;
+    return image;
+  } catch (error) {
+    console.log(error);
   };
 };
 
@@ -39,12 +50,13 @@ router.get('/:catId', async (req, res) => {
 router.post('/', async (req, res) => {
   const height = 350 + Math.floor(Math.random() * 100); 
   catFact = await getCatFact();
+  image = await getCatImage();
   const cat = new Cat({
     name: req.body.name,
     breed: req.body.breed,
     age: req.body.age,
     description: req.body.description,
-    pictureUrl: `http://placekitten.com/400/${height}`,
+    pictureUrl: image,
     fact: catFact,
   });
   try {
