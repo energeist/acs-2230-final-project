@@ -7,6 +7,8 @@ const catSchema = new Schema({
   description: { type: String },
   pictureUrl: { type: String },
   fact: {type: String },
+  loveMeter: {type: Number, default: 0},
+  favouriteThing: {type: String},
   shelter: {type: Schema.Types.ObjectId, ref: 'Shelter'},
 }, { timestamps: true });
 

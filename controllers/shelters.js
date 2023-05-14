@@ -26,12 +26,12 @@ router.get('/:shelterId', async (req, res) => {
 
 // Create
 router.post('/', async (req, res) => {
-  const height = 350 + Math.floor(Math.random() * 100); 
   const shelter = new Shelter({
     name: req.body.name,
-    breed: req.body.breed,
-    age: req.body.age,
-    description: req.body.description,
+    country: req.body.country,
+    state: req.body.state,
+    phone: req.body.phone,
+    email: req.body.email
   });
   try {
     const newShelter = await shelter.save();
@@ -56,9 +56,9 @@ router.put('/:shelterId', async (req, res) => {
       if (!param || param == "") {
         return res.status(500).json({
           "message": `Required parameter cannot be blank or null!`
-        })
-      }
-    })
+        });
+      };
+    });
     return res.status(200).json({
       'message': `Updated shelter with id ${req.params.shelterId}`,
       'data': req.body
@@ -72,9 +72,7 @@ router.put('/:shelterId', async (req, res) => {
 // Delete
 router.delete('/:shelterId', async (req, res) => {
   try {
-    const deletedShelter = await Shelter.findByIdAndDelete(req.params.shelterId)
-    console.log("deletedShelter")
-    console.log(deletedShelter)
+    const deletedShelter = await Shelter.findByIdAndDelete(req.params.shelterId);
     if (!deletedShelter) {
       return res.status(404).json({
         'message': `Shelter with id ${req.params.shelterId} not found!`,
