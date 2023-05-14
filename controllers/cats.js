@@ -27,11 +27,11 @@ const getCatImage = async (req, res) => {
   };
 };
 
-const happinessScore = (cat) => {
-  console.log(cat)
-  if (cat.loveMeter < 5) {
+const happinessScore = (score) => {
+  console.log(`score: ${score}`)
+  if (score < 5) {
     return "They could use some more attention...";
-  } else if (cat.loveMeter < 10) {
+  } else if (score < 10) {
     return "They're warming up to you.";
   } else {
     return "They look so happy!"
@@ -134,13 +134,13 @@ router.put('/:catId/pet', async (req, res) => {
       petCat.loveMeter += 3;
       await petCat.save();
       return res.status(200).json({
-        'message': `${petCat.name} really loves pets! They've gained 3 happiness points! ${happinessScore(petCat)}`  
+        'message': `${petCat.name} really loves pets! They've gained 3 happiness points! ${happinessScore(petCat.loveMeter)}`  
       });
     } else {
       petCat.loveMeter += 1;
       await petCat.save();
       return res.status(200).json({
-        'message': `${petCat.name} liked that. They've gained 1 happiness point. ${happinessScore(petCat)}`  
+        'message': `${petCat.name} liked that. They've gained 1 happiness point. ${happinessScore(petCat.loveMeter)}`  
       });
     };
   } catch(err) {
@@ -182,7 +182,6 @@ router.put('/:catId/play', async (req, res) => {
 router.put('/:catId/treats', async (req, res) => {
   try {
     const fedCat = await Cat.findById(req.params.catId);
-    console.log(`fedCat ${fedCat.name}, loveMeter: ${fedCat.loveMeter}`)
     if (!fedCat) {
       return res.status(404).json({
         'message': `Could not feed cat with id ${req.params.catId}...`
@@ -191,14 +190,12 @@ router.put('/:catId/treats', async (req, res) => {
     if (fedCat.favouriteThing === "treats") {
       fedCat.loveMeter += 3;
       await fedCat.save();
-      // await Cat.findByIdAndUpdate(req.params.catId, { loveMeter: fedCat.loveMeter });
       return res.status(200).json({
         'message': `${fedCat.name} really loves treats! They've gained 3 happiness points! ${happinessScore(fedCat.loveMeter)}`  
       });
     } else {
       fedCat.loveMeter += 1;
       await fedCat.save();
-      // await Cat.findByIdAndUpdate(req.params.catId, { loveMeter: fedCat.loveMeter });
       return res.status(200).json({
         'message': `${fedCat.name} liked that. They've gained 1 happiness point. ${happinessScore(fedCat.loveMeter)}`  
       });
@@ -212,7 +209,6 @@ router.put('/:catId/treats', async (req, res) => {
 // Delete
 router.delete('/:catId', async (req, res) => {
   try {
-    const deletedCat = await Cat.findByIdAndDelete(req.params.catId)
     if (!deletedCat) {
       return res.status(404).json({
         'message': `Cat with id ${req.params.catId} not found!`,
