@@ -168,48 +168,4 @@ describe('User', () => {
       .get('/users/logout');
     logoutAgain.should.have.status(401);
   });
-
-
-
 });
-
-// describe('User', function () {
-//   it('should not be able to login if they have not registered', function (done) {
-//     agent.post('/login', { username: 'fakeuser', password: 'nope' }).end(function (err, res) {
-//       res.should.have.status(401);
-//       done();
-//     });
-//   });
-
-//   // signup
-//   it('should be able to signup', function (done) {
-//     User.findOneAndRemove({ username: 'testone' }, function() {
-//       agent
-//         .post('/sign-up')
-//         .send({ username: 'testone', password: 'password' })
-//         .end(function (err, res) {
-//           console.log(res.body);
-//           res.should.have.status(200);
-//           agent.should.have.cookie('nToken');
-//           done();
-//         });
-//     });
-//   });
-
-
-
-//   // logout
-  // it('should be able to logout', function (done) {
-  //   agent.get('/logout').end(function (err, res) {
-  //     res.should.have.status(200);
-  //     agent.should.not.have.cookie('nToken');
-  //     done();
-  //   });
-  // });
-
-//   after(function () {
-//     agent.close();
-//   });
-// });
-
-
