@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // Database Setup
-require('./config/db-setup.js');
+require('./config/test-db-setup.js');
 
 // Auth Middleware
 const checkAuth = require('./middleware/checkAuth');
@@ -37,4 +37,6 @@ app.use('/shelters', sheltersRouter);
 app.use('/users', authRouter);
 
 // Start Server
-app.listen(3000, () => console.log('PetSearcher listening on port 3000...'));
+app.listen(3000, () => console.log('PetSearcher Test DB listening on port 3000...'));
+
+module.exports = app

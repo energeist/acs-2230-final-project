@@ -7,7 +7,7 @@ mongoose.connect(mongoUri);
 const db = mongoose.connection;
 
 db.on('error', () => {
-  throw new Error(`unable to connect to database: ${mongoUri}`)
+  throw new Error(`unable to connect to database: ${mongoUri}`);
 });
 
 db.once('open', () => console.log('Connected to database'));
