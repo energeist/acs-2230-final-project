@@ -14,7 +14,7 @@ const checkAuth = async (req, res, next) => {
       return res.status(400).json({ message: "Invalid JWT, try logging in again." });
     }
   } catch(err) {
-    return res.status(500).json({ message: "Server error.  Please try again later." })
+    return res.status(401).json({ message: "Not Authorized. Please login to continue, or include JWT with your requests." })
   }
 };
 
