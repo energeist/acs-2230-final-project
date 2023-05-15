@@ -12,7 +12,11 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // Database Setup
 require('./config/db-setup.js')
 
+// Auth Middleware
+const checkAuth = require('./middleware/checkAuth');
+
 app.use(express.json());
+app.use(checkAuth);
 
 app.get('/', (req, res) => {
   try {

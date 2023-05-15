@@ -46,7 +46,7 @@ router.post('/login', async (req, res) => {
         expiresIn: '15 days',
       });
       res.cookie('nToken', token, { maxAge: 900000, httpOnly: true });
-      return res.status(200).json({ message: "Successfully logged in.", token });
+      return res.status(200).json({ message: "Successfully logged in. Please include your JWT as a bearer token in your API requests.", token });
     });
   } catch (err) {
     console.log(err);
@@ -56,7 +56,7 @@ router.post('/login', async (req, res) => {
 // Log out
 router.get('/logout', (req, res) => {
   res.clearCookie('nToken');
-  return res.redirect('/');
+  return res.status(200).json({message: "Successfully logged out."});
 });
 
 module.exports = router;
