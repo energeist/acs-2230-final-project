@@ -94,28 +94,31 @@ router.post('/', async (req, res) => {
   };
 });
 
-// Update
-router.put('/:catId', async (req, res) => {
+// Update - use PATCH for Cat because we only want to update specific attributes
+router.patch('/:catId', async (req, res) => {
   try {
-    const updatedCat = await Cat.findByIdAndUpdate(req.params.catId, req.body);
-    if (!updatedCat) {
-      return res.status(404).json({
-        'message': `Cat with id ${req.params.catId} not found!`,
-      });
-    } 
-    Object.values(req.body).forEach(param => {
-      if (!param || param == "") {
-        return res.status(500).json({
-          "message": `Required parameter cannot be blank or null!`
-        });
+    updatedCat = await Cat.findById(req.params.catId);
+    Object.keys(req.body).forEach(param => {
+      if (!["name", "breed", "age", "description"].includes(param)) {
+        return res.status(401).json({ message: `'${param}' is not a valid parameter to change on a cat! 
+          You can only change 'name', 'breed', 'age' or 'description.`});
       };
     });
-    return res.status(200).json({
-      'message': `Updated cat with id ${req.params.catId}`,
-      'data': req.body
-    });
+    if (req.body.name) {
+      updatedCat.name = req.body.name;
+    };
+    if (req.body.breed) {
+      updatedCat.breed = req.body.breed;
+    };
+    if (req.body.age) {
+      updatedCat.age = req.body.age;
+    };
+    if (req.body.description) {
+      updatedCat.description = req.body.description;
+    };
+    await updatedCat.save();
+    return res.status(200).json({ message: `Updated cat with id ${req.params.catId}`, updatedCat });
   } catch(err) {
-    console.log(err);
     return res.status(500).json({ message: err.message });
   };
 });
