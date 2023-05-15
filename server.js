@@ -17,8 +17,10 @@ app.use(express.json());
 // Controllers
 const catsRouter = require('./controllers/cats');
 const sheltersRouter = require('./controllers/shelters');
+const authRouter = require('./controllers/auth');
 app.use('/cats', catsRouter);
 app.use('/shelters', sheltersRouter);
+app.use('/', authRouter);
 
 // Start Server
 app.listen(3000, () => console.log('PetSearcher listening on port 3000...'));
