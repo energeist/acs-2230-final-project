@@ -13,15 +13,15 @@
 - PATCH /cats/:catId => Allows for modification of 'name', 'breed', 'age', or 'description' for an existing cat.  No other parameters can be directly edited.
 
 ### PUT Requests:
-- PUT /:catId/pet => YOU CAN PET THE CAT! Petting a cat will increase its happiness score based on its specific affinities!
-- PUT /:catId/play => Playing with a cat will increase its happiness score based on its specific affinities!
-- PUT /:catId/treats => Giving treats to a cat will increase its happiness score based on its specific affinities!
+- PUT /cats/:catId/pet => YOU CAN PET THE CAT! Petting a cat will increase its happiness score based on its specific affinities!
+- PUT /cats/:catId/play => Playing with a cat will increase its happiness score based on its specific affinities!
+- PUT /cats/:catId/treats => Giving treats to a cat will increase its happiness score based on its specific affinities!
 
 Try petting/playing with/feeding your favourite cat and watch its happiness score grow!
 
 ### DELETE Requests:
 !> **WARNING**: Destructive action!
-- DELETE /:catId => Removes a cat from the system.
+- DELETE /cats/:catId => Removes a cat from the system.
 
 ## Shelter Queries:
 
