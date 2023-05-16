@@ -169,4 +169,9 @@ describe('Authentication/Authorization tests', () => {
       .get('/users/logout');
     logoutAgain.should.have.status(401);
   });
+
+  after(() => {
+    app.close();
+    mongoose.connection.close();
+  });
 });

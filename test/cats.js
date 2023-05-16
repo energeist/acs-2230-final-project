@@ -369,4 +369,9 @@ describe('Cat tests', () => {
       .put(`/cats/${idString}/treats`);
     cat.should.have.status(401);
   });
+
+  after(() => {
+    app.close();
+    mongoose.connection.close();
+  });
 });

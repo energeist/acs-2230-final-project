@@ -5,9 +5,11 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "mocha --exit",
-    "test:serial": "mocha ./test/auth.js && mocha ./test/cats.js && mocha ./test/shelters.js --exit",
-    "deploy": "gh-pages -d"
+    "test:serial": "npm-run-all mocha-serial",
+    "mocha-serial": "npm-run-all --sequential mocha:auth mocha:cats mocha:shelters",
+    "mocha:auth": "mocha ./test/auth.js --exit",
+    "mocha:cats": "mocha ./test/cats.js --exit",
+    "mocha:shelters": "mocha ./test/shelters.js --exit"
   },
   "author": "Mark Rattle <mark.rattle@gmail.com> (http://www.github.com/energeist)",
   "license": "MIT",
@@ -28,6 +30,7 @@
     "dotenv": "^16.0.3",
     "gh-pages": "^5.0.0",
     "mocha": "^10.2.0",
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22",
+    "npm-run-all": "^4.1.5"
   }
 }

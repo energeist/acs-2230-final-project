@@ -37,6 +37,12 @@ app.use('/shelters', sheltersRouter);
 app.use('/users', authRouter);
 
 // Start Server
-app.listen(3000, () => console.log('CatSearcher Test DB listening on port 3000...'));
+const server = app.listen(process.env.PORT, () => {
+  console.log(`CatSearcher Test DB listening on port ${process.env.PORT}...`);
+});
 
 module.exports = app;
+
+module.exports.close = () => {
+  server.close();
+};
