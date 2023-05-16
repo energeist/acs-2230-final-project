@@ -1,7 +1,8 @@
+require('dotenv').config();
 const mongoose = require('mongoose');
 
 // connect to mongo db
-const mongoUri = process.env.TEST_DATABASE_URL;
+const mongoUri = `mongodb+srv://${process.env.ATLAS_TEST_USER}:${process.env.ATLAS_TEST_PASSWORD}@cat-searcher-test-clust.d3fdsab.mongodb.net/catsearchertest`;
 mongoose.connect(mongoUri);
 
 const db = mongoose.connection;

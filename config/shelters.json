@@ -1,0 +1,84 @@
+{
+  "shelters": [
+    {
+      "name": "Whiskers Shelter",
+      "country": "Canada",
+      "state": "Ontario",
+      "phone": "123-456-7890",
+      "email": "whiskers@example.com",
+      "cats": []
+    },
+    {
+      "name": "Purrfect Haven",
+      "country": "USA",
+      "state": "California",
+      "phone": "987-654-3210",
+      "email": "purrfect@example.com",
+      "cats": []
+    },
+    {
+      "name": "Meow Manor",
+      "country": "Canada",
+      "state": "British Columbia",
+      "phone": "555-123-4567",
+      "email": "meow@example.com",
+      "cats": []
+    },
+    {
+      "name": "Feline Friends Sanctuary",
+      "country": "USA",
+      "state": "New York",
+      "phone": "555-111-2222",
+      "email": "felinefriends@example.com",
+      "cats": []
+    },
+    {
+      "name": "Whiskerville Haven",
+      "country": "Canada",
+      "state": "Quebec",
+      "phone": "999-888-7777",
+      "email": "whiskerville@example.com",
+      "cats": []
+    },
+    {
+      "name": "Paws & Claws Refuge",
+      "country": "USA",
+      "state": "Texas",
+      "phone": "123-456-7890",
+      "email": "pawsandclaws@example.com",
+      "cats": []
+    },
+    {
+      "name": "Catnip Cove",
+      "country": "Canada",
+      "state": "Alberta",
+      "phone": "444-555-6666",
+      "email": "catnip@example.com",
+      "cats": []
+    },
+    {
+      "name": "Whisker Wonderland",
+      "country": "USA",
+      "state": "Florida",
+      "phone": "777-888-9999",
+      "email": "whiskerwonderland@example.com",
+      "cats": []
+    },
+    {
+      "name": "Pride Rescue",
+      "country": "Canada",
+      "state": "Ontario",
+      "phone": "111-222-3333",
+      "email": "purrpalace@example.com",
+      "cats": []
+    },
+    {
+      "name": "Kitty Haven",
+      "country": "USA",
+      "state": "California",
+      "phone": "999-111-2222",
+      "email": "kittyhaven@example.com",
+      "cats": []
+    }
+  ]
+}
