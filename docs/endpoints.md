@@ -37,4 +37,4 @@ Try petting/playing with/feeding your favourite cat and watch its happiness scor
 
 ### DELETE Requests:
 !> **WARNING**: Destructive action!
-- DELETE /:shelterId => Removes a shelter from the system.  
+- DELETE /shelters/:shelterId => Removes a shelter from the system.  
