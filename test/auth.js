@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const { describe, it, before } = require('mocha');
@@ -20,6 +21,12 @@ before(async () => {
       password: 'password'
     });
   user.should.have.status(201);
+});
+
+after(async () => {
+  mongoose.models = {}
+  mongoose.modelSchemas = {}
+  mongoose.connection.close()
 });
 
 describe('Authentication/Authorization tests', () => {

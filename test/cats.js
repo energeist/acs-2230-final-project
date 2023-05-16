@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const { describe, it, beforeEach, afterEach, before } = require('mocha');
@@ -46,9 +47,13 @@ before(async () => {
       phone: '123-234-3456',
       email: 'priderescue@email.com',
     });
-  shelter.should.have.status(201);
-  
-  
+  shelter.should.have.status(201);  
+});
+
+after(async () => {
+  mongoose.models = {}
+  mongoose.modelSchemas = {}
+  mongoose.connection.close()
 });
 
 describe('Cat tests', () => {
@@ -66,7 +71,7 @@ describe('Cat tests', () => {
       description: "Fished from the gutter with a shrimp on a string",
     });
     cat.should.have.status(201);
-  })
+  });
 
   afterEach(async () => {
     await Cat.deleteMany({name: ["Butter", "Changed", "Test"]})
@@ -74,7 +79,7 @@ describe('Cat tests', () => {
     foundShelter = shelters[0];
     foundShelter.cats = [];
     await foundShelter.save();
-  })
+  });
 
   // check external APIs
   it('should receive a response from the CatFact API for a fact', async () => {

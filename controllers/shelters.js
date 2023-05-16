@@ -7,7 +7,7 @@ const Shelter = require('../models/shelter');
 router.get('/', async (req, res) => {
   try {
     const shelters = await Shelter.find();
-    res.status(418).json(shelters);
+    res.status(200).json(shelters);
   } catch (err) {
     res.status(500).json({ message: err.message }); // returns 500 which means there was a server error
   };
