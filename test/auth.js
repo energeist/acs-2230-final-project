@@ -22,7 +22,7 @@ before(async () => {
   user.should.have.status(201);
 });
 
-describe('User', () => {
+describe('Authentication/Authorization tests', () => {
   // account creation
   it('should allow a user to sign up with the required parameters', async () => {
     const user = await chai

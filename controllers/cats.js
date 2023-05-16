@@ -4,28 +4,7 @@ const axios = require('axios');
 const router = express.Router();
 const Cat = require('../models/cat');
 const Shelter = require('../models/shelter');
-
-// Helper function to ping catfact API for a fact
-const getCatFact = async (req, res) => {
-  try {
-    const response = await axios.get('https://catfact.ninja/fact');
-    const fact = response.data.fact;
-    return fact;
-  } catch (error) {
-    console.error(error);
-  };
-};
-
-// Helper function to ping catapi API for images
-const getCatImage = async (req, res) => {
-  try {
-    const response = await axios.get(`https://api.thecatapi.com/v1/images/search?api_key=${process.env.CAT_API_KEY}`);
-    const image = response.data[0].url;
-    return image;
-  } catch (error) {
-    console.log(error);
-  };
-};
+const extApis = require('../controllers/helpers');
 
 const happinessScore = (score) => {
   console.log(`score: ${score}`)
@@ -61,8 +40,8 @@ router.get('/:catId', async (req, res) => {
 
 // Create
 router.post('/', async (req, res) => {
-  catFact = await getCatFact();
-  image = await getCatImage();
+  catFact = await extApis.getCatFact();
+  image = await extApis.getCatImage();
   const cat = new Cat({
     name: req.body.name,
     breed: req.body.breed,
@@ -148,7 +127,7 @@ router.put('/:catId/pet', async (req, res) => {
     };
   } catch(err) {
     console.log(err);
-    return res.status(500).json({ message: err.message });
+    return res.status(500).json({ message: "You can (NOT) pet the cat" });
   };
 });
 
@@ -212,6 +191,7 @@ router.put('/:catId/treats', async (req, res) => {
 // Delete
 router.delete('/:catId', async (req, res) => {
   try {
+    const deletedCat = await Cat.findByIdAndDelete(req.params.catId);
     if (!deletedCat) {
       return res.status(404).json({
         'message': `Cat with id ${req.params.catId} not found!`,
