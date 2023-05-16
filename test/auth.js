@@ -8,7 +8,6 @@ const agent = chai.request.agent(app);
 const should = chai.should();
 
 const User = require('../models/user');
-const { deleteOne } = require('../models/cat');
 
 before(async () => {
   // make a test account
