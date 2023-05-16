@@ -1,3 +1,4 @@
+// // For whatever reason my cats test file and shelter test file run fine independently but keep breaking if I try to run both at the same time, even when running in serial
 // const mongoose = require('mongoose');
 // const chai = require('chai');
 // const chaiHttp = require('chai-http');
@@ -14,7 +15,6 @@
 // before(async () => {
 //   // make a test user and login
 //   await User.deleteMany({});
-//   await Cat.deleteMany({});
 //   await Shelter.deleteMany({});
 //   const user = await chai
 //     .request(app)
@@ -33,12 +33,6 @@
 //   loginRes.should.have.status(200);
 //   loginRes.body.should.have.property('token');
 //   token = loginRes.body.token; 
-// });
-
-// after(async () => {
-//   mongoose.models = {}
-//   mongoose.modelSchemas = {}
-//   mongoose.connection.close()
 // });
 
 // describe('Shelter tests', () => {

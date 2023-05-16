@@ -8,6 +8,7 @@ const agent = chai.request.agent(app);
 const should = chai.should();
 
 const User = require('../models/user');
+const { deleteOne } = require('../models/cat');
 
 before(async () => {
   // make a test account
@@ -21,12 +22,6 @@ before(async () => {
       password: 'password'
     });
   user.should.have.status(201);
-});
-
-after(async () => {
-  mongoose.models = {}
-  mongoose.modelSchemas = {}
-  mongoose.connection.close()
 });
 
 describe('Authentication/Authorization tests', () => {

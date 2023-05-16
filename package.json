@@ -4,7 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "mocha --exit"
+    "test": "mocha --exit",
+    "test:serial": "mocha ./test/auth.js && mocha ./test/cats.js && mocha ./test/shelters.js --exit"
   },
   "author": "Mark Rattle <mark.rattle@gmail.com> (http://www.github.com/energeist)",
   "license": "MIT",

@@ -21,7 +21,7 @@ app.use(checkAuth);
 app.get('/', (req, res) => {
   try {
     res.status(200).json({
-      message: "Welcome to PetSearcher!  Please login to use the API."
+      message: "Welcome to CatSearcher!  Please login to use the API."
     });
   } catch(err) {
     res.status(500).json({ message: err.message });
@@ -37,6 +37,6 @@ app.use('/shelters', sheltersRouter);
 app.use('/users', authRouter);
 
 // Start Server
-app.listen(3000, () => console.log('PetSearcher Test DB listening on port 3000...'));
+app.listen(3000, () => console.log('CatSearcher Test DB listening on port 3000...'));
 
-module.exports = app
+module.exports = app;

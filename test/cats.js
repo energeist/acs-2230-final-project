@@ -50,12 +50,6 @@ before(async () => {
   shelter.should.have.status(201);  
 });
 
-after(async () => {
-  mongoose.models = {}
-  mongoose.modelSchemas = {}
-  mongoose.connection.close()
-});
-
 describe('Cat tests', () => {
   // before / after each test
 
@@ -282,7 +276,6 @@ describe('Cat tests', () => {
       .request(app)
       .delete(`/cats/${idString}`)
       .set('Authorization', `Bearer ${token}`);
-    console.log(cat.error.message)
     cat.should.have.status(200);
   });
 
@@ -327,7 +320,6 @@ describe('Cat tests', () => {
     const cats = await Cat.find();
     const testCat = cats[0];
     const idString = testCat._id;
-    // console.log(`testCat: ${testCat}`)
     let cat = await chai
       .request(app)
       .put(`/cats/${idString}/play`)
